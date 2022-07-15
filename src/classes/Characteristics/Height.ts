@@ -15,6 +15,7 @@ export class Height {
   get ft() { return this.fromCmsToFt(this.inputCm) }
   get inches() { return this.fromCmsToRemainingInches(this.inputCm) }
   get heightInFtInches() { return this.inputCm ? (this.ft === 0) ? `${this.inches} inches` : `${this.ft}'${this.inches}"` : undefined }
+  get heightInInches() { return this.inputCm ? this.fromCmsToInches(this.inputCm) : undefined }
 
   toString() {
     return this.heightInFtInches;

@@ -6,22 +6,20 @@
 
 	import Demographics from './components/Demographics.svelte';
 	import PatientInfo from './components/PatientInfo.svelte';
+	import KidneyFunction from './components/KidneyFunction.svelte';
+
+	import Container from './components/ui/Container.svelte';
 
 	console.clear();
 	console.log($pt);
 </script>
 
 <Demographics />
-<hr />
-
 <PatientInfo />
 
+<KidneyFunction />
 <hr />
-<pre>{JSON.stringify($pt, null, 2)}</pre>
+<Container>
+	<pre>{JSON.stringify($pt, null, 2)}</pre>
+</Container>
 <hr />
-
-<style global>
-	h2 {
-		font-size: 18px;
-	}
-</style>

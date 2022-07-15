@@ -5,10 +5,7 @@ export class Weight {
 
   constructor() {}
 
-  get kg() {
-    return this.inputKg;
-  }
-
+  get kg() {return this.inputKg; }
   get weightInLbs() {
     return this.inputLbs
       ? this.inputLbs

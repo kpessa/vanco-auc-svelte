@@ -1,53 +1,62 @@
-*,
-*:before,
-*:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer reset {
+  *,
+  *:before,
+  *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
-:root {
-  font-family: Tahoma, sans-serif;
+@layer base {
+
+  #app {
+    /* background: red; */
+  }
+
+  .container {
+    max-width: 640px;
+    width: calc(100% - 2rem);
+    margin: 0 auto;
+  }
 }
 
-h1 {
-  font-size: 18px;
-  text-align: center;
-  background-color: lightgrey;
-  padding: 10px;
-  border: 2px solid darkgrey;
+@layer typography {
+  :root {
+    font-family: Tahoma, sans-serif;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 }
 
-h2 {
-  margin-bottom: 10px;
+@layer forms {
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 8px;
+    margin-bottom: 5px;
+  }
+
+  input,
+  select {
+    text-align: center;
+    padding: 4px;
+    cursor: pointer;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
-label {
-  font-size: 12px;
-  font-weight: 700;
-  margin-top: 8px;
-  margin-bottom: 5px;
-}
-
-input,
-select {
-  text-align: center;
-  padding: 4px;
-  cursor: pointer;
-}
-
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-label {
-  display: block;
+@layer demographics {
+	.demographics-labels:nth-of-type(n + 2) {
+		margin-left: 30px;
+	}
 }

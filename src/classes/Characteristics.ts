@@ -11,14 +11,13 @@ export class Characteristics {
     this.wt = new Weight();
   }
 
-  get bmi() {
-    if (!this.tbw) return undefined;
+  get tbw() { return this.wt.kg; }
+  get bmi() { return (this.wt.kg && this.ht.cms) ? this.bmi_calculation : undefined }
+  get ageGender(): string | undefined { return this.age && this.gender ? `${this.age} ${this.gender}` : this.age ? `${this.age}` : this.gender ? this.gender : undefined; }
+  
+  get bmi_calculation() {
     let bmi = this.tbw / this.ht.heightInMeters ** 2;
-    return bmi % 1 ? +bmi.toFixed(1) : bmi;
-  }
-
-  get tbw() {
-    return this.wt.kg;
+    return bmi % 1 ? +bmi.toFixed(1) : bmi
   }
 
   get tbw_ibw() {
@@ -44,13 +43,4 @@ export class Characteristics {
     return ibw % 1 ? +ibw.toFixed(1) : ibw;
   }
 
-  get ageGender() {
-    return this.age && this.gender
-      ? `${this.age} ${this.gender}`
-      : this.age
-      ? this.age
-      : this.gender
-      ? this.gender
-      : '';
-  }
 }
