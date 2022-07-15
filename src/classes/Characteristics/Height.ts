@@ -4,44 +4,17 @@ export class Height {
   inputFt: number | undefined;
   inputIn: number | undefined;
 
-  constructor() {}
+  constructor() { }
+  
+  fromCmsToInches = cms => cms ? Math.round(cms / 2.54) : undefined
+  fromCmsToFt = cms => cms ? Math.floor(this.fromCmsToInches(cms) / 12) : undefined
+  fromCmsToRemainingInches = cms => cms ? this.fromCmsToInches(cms) % 12 : undefined
 
-  get heightInMeters() {
-    return this.heightInCm / 100;
-  }
-
-  get heightInCm() {
-    if (this.inputUnits === 'cm') return +this.inputCm;
-    return +this.inputCm * 2.54;
-  }
-
-  get heightInInches() {
-    if (this.inputFt === undefined || this.inputIn === undefined)
-      return undefined;
-    return this.inputFt * 12 + this.inputIn;
-  }
-
-  get cms() {
-    if (this.inputCm !== undefined) return this.inputCm;
-    return undefined;
-  }
-
-  get ft() {
-    if (this.inputFt !== undefined) return +this.inputFt;
-    return undefined;
-  }
-
-  get inches() {
-    if (this.inputIn !== undefined) return +this.inputIn;
-    return undefined;
-  }
-
-  get heightInFtInches() {
-    // case1 - ft & inches not empty
-    if (this.inches === undefined) return undefined;
-    if (this.ft === 0) return `${this.inches} inches`;
-    return `${this.ft}'${this.inches}"`;
-  }
+  get heightInMeters(): number | undefined { return this.cms / 100; }
+  get cms() { return (this.inputCm) ? this.inputCm : undefined }
+  get ft() { return this.fromCmsToFt(this.inputCm) }
+  get inches() { return this.fromCmsToRemainingInches(this.inputCm) }
+  get heightInFtInches() { return this.inputCm ? (this.ft === 0) ? `${this.inches} inches` : `${this.ft}'${this.inches}"` : undefined }
 
   toString() {
     return this.heightInFtInches;
